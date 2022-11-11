@@ -125,11 +125,8 @@ let user1 =
 function initializeUser(userload,loaddata){
   
   let userJsonString = user1 ;
-
-  //userJsonString = prompt("Jsonを貼り付けてください") ;
-  //console.log(userJsonString);
   
-  //JSONがにゅりょくされているかチェック
+  //JSONが入力されているかチェック
   if(userJsonString == `` ) initializeUser();
   
   let jsonDecodeduser = JSON.parse(userJsonString);
@@ -144,8 +141,6 @@ function initializeUser(userload,loaddata){
   savebtn.addEventListener("click",function(){
     let tmp = JSON.stringify(user) ;
     localStorage.setItem("Steven", tmp) ;
-    console.log("save") ;
-    console.log(localStorage) ;
   });
 
   //reloadボタン
@@ -153,10 +148,8 @@ function initializeUser(userload,loaddata){
   loadbtn.addEventListener("click",function(){
     let loaddata = localStorage.getItem("Steven") ;
     let burgernumele = document.querySelector("#text #burger") ;
-    console.log("load") ;
 
     let tmp = JSON.parse(loaddata);
-    console.log(tmp);
     user.money = tmp.money ;
     user.age = tmp.age ;
     user.days = tmp.days ;
@@ -164,7 +157,6 @@ function initializeUser(userload,loaddata){
     user.burger = tmp.burger ;
     user.name = "data" ;
     burgernumele.innerHTML = `${user.burger} Burgers` ;
-    console.log(user);
   });
 
 //1000msカウント
@@ -434,6 +426,9 @@ function assetHTML(user,assetinfo){
 
 //purchase
 function purchase(user,assetinfo,cnt){
+
+  //個数が0の場合は購入できない
+  if(cnt==0) unPurchaseValue(user,assetinfo,cnt) ;
 
   switch(assetinfo["type"]){
     case "investment":
