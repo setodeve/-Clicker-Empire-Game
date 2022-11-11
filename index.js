@@ -428,10 +428,7 @@ function assetHTML(user,assetinfo){
 function purchase(user,assetinfo,cnt){
 
   //個数が0の場合は購入できない
-  if(cnt==0){
-    unPurchaseValue(user,assetinfo,cnt) ;
-    return 0;
-  } 
+  if(cnt==0) return 0; 
 
   switch(assetinfo["type"]){
     case "investment":
