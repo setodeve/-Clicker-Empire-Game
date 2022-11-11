@@ -377,7 +377,7 @@ function assetHTML(user,assetinfo){
       </div>
       <div class="col-12 pt-1 bg-secondary">
           <div>How many would you like to purchase?</div>
-          <input type="number" class="col-12 pb-1 text-right form-control" max=${assetinfo["max"]} placeholder="1" id="purchase-form">
+          <input type="number" class="col-12 pb-1 text-right form-control" max=${assetinfo["max"]} placeholder="0" id="purchase-form">
       </div>
       <div class="d-flex justify-content-end pr-3 bg-secondary">
         <div id="purchasetotal">Total : $0</div>
@@ -428,7 +428,10 @@ function assetHTML(user,assetinfo){
 function purchase(user,assetinfo,cnt){
 
   //個数が0の場合は購入できない
-  if(cnt==0) unPurchaseValue(user,assetinfo,cnt) ;
+  if(cnt==0){
+    unPurchaseValue(user,assetinfo,cnt) ;
+    return 0;
+  } 
 
   switch(assetinfo["type"]){
     case "investment":
